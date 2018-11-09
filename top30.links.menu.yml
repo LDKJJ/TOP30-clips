@@ -1,0 +1,20 @@
+top30.admin:
+  title: 'TOP30'
+  description: 'Links top30'
+  parent: system.admin
+  route_name: top30.top30_controller_getList
+  weight: 30
+
+add_top30.admin:
+  title: 'Ajouter un TOP30'
+  description: 'Links to add top30'
+  parent: top30.admin
+  route_name: top30.top30_controller_add
+  weight: 0
+
+edit_top30.admin:
+  title: 'Modifier un TOP30'
+  description: 'Links to edit top30'
+  parent: top30.admin
+  route_name: top30.top30_controller_getList
+  weight: 1

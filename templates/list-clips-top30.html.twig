@@ -1,0 +1,43 @@
+{% for clip in clips %}
+<div class="list-item row-striped">
+	<div class="row clip fix-w-container">
+		<div class="col-lg-6">
+			<div class="row">
+				<div class="col-lg-2 flow-nbr-classement">
+					{% if clip.position|length > 1 %}
+					{{ clip.position }}
+					{% else %}
+					{{ '0' ~ clip.position }}
+					{% endif %}
+				</div>
+				<div class="col-lg-4">
+					{% if clip.image is not null %}
+					<img src="{{ clip.image }}" />
+					{% else %}
+					{% set link_youtube = clip.embed_code|split('/') %}
+					<img src="//img.youtube.com/vi/{{ link_youtube[3] }}/mqdefault.jpg">
+					{% endif %}	
+				</div>
+				<div class="col-lg-6 left-content">
+					<h6 class="clip-name">{{ clip.title }}</h6>
+					<b class="artiste-name">{{ clip.artiste }}</b>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-4">
+			<div class="bg-hover" style="display:block !important">
+				{% if clip.exist_vote > 0 %}
+				<i class="fa fa-heart green-heart"></i>
+				{% else %}
+				<a href="javascript:void(0)" class="b-vote vote-this" data-id="{{ clip.nid }}" data-spin-type="black-spin">
+					<span>{{ 'Je vote'|t }}</span>
+				</a>
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-lg-2">
+			<b class="progression">{{ clip.progression|raw }}</b>
+		</div>
+	</div>
+</div>
+{% endfor %}

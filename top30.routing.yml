@@ -1,0 +1,56 @@
+top30.top30_controller_getList:
+  path: '/admin/top30/getList'
+  defaults:
+    _form: '\Drupal\top30\Form\Top30Form'
+    _title: 'top30'
+  requirements:
+    _permission: 'access content'
+
+top30.top30_controller_add:
+  path: '/admin/top30/add'
+  defaults:
+    _controller: '\Drupal\top30\Controller\Top30Controller::add'
+    _title: 'top30 add'
+  requirements:
+    _permission: 'access content'
+
+top30.top30_controller_edit:
+  path: '/admin/top30/edit/{token}'
+  defaults:
+    _controller: '\Drupal\top30\Controller\Top30Controller::edit'
+    _title: 'top30 edit'
+  requirements:
+    _permission: 'access content'
+
+top30.top30_form:
+  path: '/admin/top30/form'
+  defaults:
+    _form: '\Drupal\top30\Form\Top30Form'
+    _title: 'Top30Form'
+  requirements:
+    _access: 'TRUE'
+
+top30.top30_controller_search_clips:
+  path: '/admin/top30/search-clips'
+  defaults:
+    _controller: '\Drupal\top30\Controller\Top30Controller::searchClips'
+    _title: 'Search clips'
+  requirements:
+    _access: 'TRUE'
+
+top30.top30_controller_vote_clip:
+  path: '/admin/top30/vote-clip'
+  defaults:
+    _controller: '\Drupal\top30\Controller\Top30Controller::voteClip'
+    _title: 'Vote clips'
+  requirements:
+    _access: 'TRUE'
+
+top30.top30_controller_get_TOP30:
+  path: '/top30/get'
+  defaults:
+    _controller: '\Drupal\top30\Controller\Top30Controller::getTOP30'
+    _title: 'get clips TOP30'
+  requirements:
+    _access: 'TRUE'
+  

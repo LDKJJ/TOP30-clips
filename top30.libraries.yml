@@ -1,0 +1,19 @@
+top30.assets:
+  css:
+    theme:
+      assets/css/top30.css: {}
+  js:
+    assets/js/top30.js: {}
+    assets/js/plugin/jquery-sortable.js: {}
+    assets/js/plugin/jquery-ui-1-11-4.js: {}
+  dependencies:
+    - core/jquery
+
+top30_front.assets:
+  css:
+    theme:
+      assets/css/top30_front.css: {}
+  js:
+    assets/js/top30_front.js: {}
+  dependencies:
+    - core/jquery

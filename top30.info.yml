@@ -1,0 +1,5 @@
+name: 'top30'
+type: module
+description: 'Module Top30 music hitradio'
+core: 8.x
+package: 'top30'

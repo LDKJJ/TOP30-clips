@@ -1,0 +1,14 @@
+{
+  "name": "drupal/top30",
+  "type": "drupal-module",
+  "description": "Module Top30 music hitradio",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/top30",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://www.drupal.org/project/issues/top30",
+    "source": "http://cgit.drupalcode.org/top30"
+  },
+  "require": { }
+}

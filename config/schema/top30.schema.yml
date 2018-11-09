@@ -1,0 +1,18 @@
+top30.settings.*:
+  type: config_object
+  mapping:
+    date_debut_vote:
+      type: datetime_timestamp
+      label: 'Date de début des votes'
+    date_fin_vote:
+      type: datetime_timestamp
+      label: 'Date de fin des votes'
+    classement_precedent:
+      type: string
+      label: 'Classement précedent'
+    date_pub_classement:
+      type: string
+      label: 'Date de publication du classement'
+    data_music.*:
+      type: datetime_timestamp
+      label: 'Music'

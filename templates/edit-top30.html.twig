@@ -1,0 +1,129 @@
+<form class="top30-form" data-drupal-selector="top30-form" action="/hitradio/admin/top30/add" method="post" id="top30-form" accept-charset="UTF-8">
+	<p>
+		<label for="date_debut_vote" class="js-form-required form-required">{{ 'Date de début des votes'|t }}</label>
+		{% set datetime = top30.date_debut_vote|split('&') %}
+		<input type="date" name="date__debut_vote" class="form-date" id="date_debut_vote" value="{{ datetime[0] }}" />
+		<input type="time" name="time__debut_vote" class="form-time" id="time__debut_vote" step="1" value="{{ datetime[1] }}"  />
+	</p>
+	<p>
+		<label for="date_fin_vote" class="js-form-required form-required">{{ 'Date de fin des votes'|t }}</label>
+		{% set datetime = top30.date_fin_vote|split('&') %}
+		<input type="date" name="date__fin_vote" class="form-date" id="date_fin_vote" value="{{ datetime[0] }}" />
+		<input type="time" name="time__fin_vote" class="form-time" id="time__fin_vote" value="{{ datetime[1] }}" step="1" />
+	</p>
+	<p>
+		<label for="date_classement_precedent" class="js-form-required form-required">{{ 'Classement précedent'|t }}</label>
+		<select name="preview-classement">
+			{% set continue = false %}
+			{% for row in preview_classement %}
+			{% if top30.token == row.token %}
+			{% set continue = true %}
+			{% endif %}
+			{% if continue == false %}
+			{% if top30.preview_classement == row.token %}
+			<option value="{{ row.token }}" selected>{{ row.date }}</option>
+			{% else %}
+			<option value="{{ row.token }}">{{ row.date }}</option>
+			{% endif %}
+			{% endif %}
+			{% endfor %}
+		</select>
+	</p>
+	<p>
+		<label for="time_publication_classement" class="js-form-required form-required">{{ 'Date de publication du classement'|t }}</label>
+		{% set datetime = top30.date_pub_classement|split('&') %}
+		<input type="date" name="date__publication_classement" class="form-date" id="date_publication_classement" value="{{ datetime[0] }}" />
+		<input type="time" name="time__publication_classement" class="form-time" id="time_publication_classement" step="1" value="{{ datetime[1] }}" />
+	</p>
+	<p>
+		<label for="share_classement" class="js-form-required form-required">{{ 'Publié le classement?'|t }}</label>
+		<input type="checkbox" name="share_classement" {% if top30.share_classement %}checked{% endif %} id="share_classement" value="1" />
+	</p>
+
+	<table id="top30-grid">
+		<thead>
+			<tr>
+				<th colspan="7" style="background-color: #0678be; color: #FFF;text-transform: capitalize">{{ 'TOP30 entrées'|t }}</th>
+			</tr>
+			<tr>
+				<th>{{ 'Track'|t }}</th>
+				<th>{{ 'Position'|t }}</th>
+				<th>{{ 'Position de classement précedent'|t }}</th>
+				<th>{{ 'Progression'|t }}</th>
+				<!--th>{{ 'Scores'|t }}</th-->
+				<th>{{ 'Votes total'|t }}</th>
+				<th>{{ 'Supprimer ?'|t }}</th>
+			</tr>
+		</thead>
+		<tbody id="form-rows">
+			{% if top30.music is null %}
+			<tr id="row-0">
+				<td>
+					<input type="text" name="track[]" class="form-text track-input" id="__track-0" value="0" size="5" />
+					<div class="search-panel">
+						<input type="text" name="input-search-clips" class="input-search-clips form-text" placeholder="Recherche de clip" />
+						<span class="icon-search"></span>
+						<div class="content-search"></div>
+					</div>
+				</td>
+				<td>
+					<input type="text" name="position[]" class="form-text position-input" id="__position-0" value="0" size="5" />
+				</td>
+				<td><span class="previews-position">0</span></td>
+				<td><span class="pregression">0</span></td>
+				<!--td><span class="scores">0</span></td-->
+				<td>
+					<input type="hidden" name="top30_entries-0-total-votes" id="top30_entries-0-total-votes" />
+					<span class="top30_entries-0-total-votes">
+						<input type="hidden" name="total_rate[]" id="total_rate-0" />
+						<span class="top30_entries-0-total-votes">0</span>
+					</span>
+				</td>
+				<td>
+				</td>
+			</tr>
+			{% else %}
+			{% for music in top30.music %}
+			<tr id="row-0">
+				<td>
+					<input type="text" name="track[]" class="form-text track-input" id="__track-0" value="{{ music.track }}" size="5" />
+					<div class="search-panel">
+						<input type="text" name="input-search-clips" class="input-search-clips form-text" placeholder="Recherche de clip" value="{{ music.title }}" />
+						<span class="icon-search"></span>
+						<div class="content-search"></div>
+					</div>
+				</td>
+				<td>
+					<input type="text" name="position[]" class="form-text position-input" id="__position-0" value="{{ music.position }}" size="5" />
+				</td>
+				<td><span class="previews-position">{{ music.preview_position }}</span></td>
+				<td><span class="pregression">{{ music.pregression|raw }}</span></td>
+				<!--td><span class="scores">0</span></td-->
+				<td>
+					<input type="hidden" name="top30_entries-0-total-votes" id="top30_entries-0-total-votes" />
+					<span class="top30_entries-0-total-votes">
+						{% set total_rate = 0 %}
+						{% if music.total_rates %}
+						{% set total_rate = music.total_rates %}
+						{% endif %}
+						<input type="hidden" name="total_rate[]" class="total_rate" value="{{ music.total_rates }}" />
+						<span class="top30_entries-total-votes">{{ total_rate }}</span>
+					</span>
+				</td>
+				<td>
+					<input type="checkbox" name="top30_music_delete[]" value="{{ music.track }}" />
+				</td>
+			</tr>
+			{% endfor %}
+			{% endif %}
+		</tbody>
+	</table>
+	<p>
+		<a href="javascript: void(0)" id="add-row-top30">{{ 'Ajouter un objet Top30 Entrée supplémentaire'|t }}</a>
+	</p>
+
+	<div class="actions">
+		<input type="submit" name="valider" data-role="edit" class="button js-form-submit form-submit" value="{{ 'Valider'|t }}" onclick="submitForm(); return false" />
+	</div>
+	<input type="hidden" name="top30_token" id="top30_token" value="{{ top30.token }}" />
+</form>

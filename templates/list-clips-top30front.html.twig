@@ -1,0 +1,65 @@
+<div class="block-top30-front">
+	<div class="row">
+		<div class="col-lg-4 col-md-4 col-sm-4">
+			<h1 style="margin: 0">{{ 'Classement'|t }}</h1>
+			<span class="g-color">{{ date_classement }}</span>
+		</div>
+		<div class="col-lg-5 col-md-5 col-sm-5 col-btn">
+			<a href="#" class="inline-btn active">{{ 'Top30'|t }}</a>
+			<a href="#" class="inline-btn">{{ 'Playlist'|t }}</a>
+			<a href="#" class="inline-btn">{{ 'Hit mondial'|t }}</a>
+		</div>
+		<div class="col-lg-3 col-md-3 col-sm-3 resp-hide">
+			<a href="/top30" style="margin-left: 40px; color: #b7b8bc"><i class="fas fa-heart active"></i>&nbsp;{{ 'Je vote'|t }}</a>
+			<a href="#" class="fix-style" style="float:right; padding-bottom: 17px;">
+				<span>{{ 'Historique'|t }}</span>
+			</a>
+		</div>
+	</div>
+	<div class="row rm-space" style="margin: 20px 0">
+		{% for clip in clips %}
+		<div class="col col-lg-4 col-md-4 col-sm-6 add-border">
+			<div class="block-image">
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+						<div class="g-nbr-classement">
+							{{ clip.position ~ '.' }}
+						</div>
+					</div>
+					<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+						<div class="img-clip">
+							{% if clip.image is not null %}
+							<img src="{{ clip.image }}" />
+							{% else %}
+							{% set link_youtube = clip.embed_code|split('/') %}
+							<img src="//img.youtube.com/vi/{{ link_youtube[3] }}/mqdefault.jpg">
+							{% endif %}
+						</div>
+						<div class="artiste-infos">
+							<b class="artiste-name">{{ clip.artiste|raw }}</b>
+							<h6 class="clip-name">{{ clip.title }}</h6>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="width: 24.66667%">
+						<b class="voted"><i class="fas fa-heart {% if clip.exist_vote == 1 %}active{% endif %}"></i></b>
+						<b class="progression">{{ clip.progression|raw }}</b>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="row">
+		<div class="col-lg-12">
+			<a href="/classement-top30" class="inline-btn big-btn">{{ 'Tout le classement'|t }}</a>
+		</div>
+		<div class="col-lg-12">
+			<div class="block-btn resp-btn">
+				<a href="/top30" style="margin-left: 40px; color: #b7b8bc"><i class="fas fa-heart active"></i>&nbsp;{{ 'Je vote'|t }}</a>
+				<a href="#" class="fix-style" style="float:right; padding-bottom: 17px;">
+					<span>{{ 'Historique'|t }}</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div>

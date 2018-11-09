@@ -1,0 +1,52 @@
+<div class="cover-big-title fix-mg-banner">{{ 'TOP30.'|t }}</div>
+{% if token is null %}
+<h3 style="text-align:center">{{ 'Aucun classement trouvé!'|t }}</h3>
+{% else %}
+<div class="top30-grid node-section">
+	<div class="header fix-w-container">
+		<h3>{{ 'Classement.'|t }}</h3>
+		<div class="head-btn">
+			<a href="javascript:void(0)" class="active" onclick="fetchClips(this, 'float'); return false"><i class="fa fa-th-large" aria-hidden="true" style="font-size: 20px;"></i></a>&nbsp;
+			<a href="javascript:void(0)" onclick="fetchClips(this, 'list'); return false"><i class="fa fa-bars pr-3" style="font-size: 20px;"></i></a>
+		</div>
+		<span class="date-classement" data-token="{{ token }}">{{ date_classement }}</span>
+	</div>
+	<div class="row clips fix-w-container">
+		{% for clip in clips %}
+		<div class="col col-lg-2">
+			<div class="block-image">
+				<div class="bg-hover">
+					<div class="b-vote vote-this" data-id="{{ clip.nid }}">
+						{% if clip.exist_vote > 0 %}
+						<i class="fa fa-heart green-heart"></i>
+						{% else %}
+						<div class="heart"></div>
+						<p>{{ 'Je vote +1'|t }}</p>
+						{% endif %}
+					</div>
+					<div class="op-bg"></div>
+				</div>
+				{% if clip.image is not null %}
+				<img src="{{ clip.image }}" />
+				{% else %}
+				{% set link_youtube = clip.embed_code|split('/') %}
+				<img src="//img.youtube.com/vi/{{ link_youtube[3] }}/mqdefault.jpg">
+				{% endif %}
+			</div>
+			<div class="classement-content">
+				<div class="flow-nbr-classement abs-pos-full">
+					{% if clip.position|length > 1 %}
+					{{ clip.position }}
+					{% else %}
+					{{ '0' ~ clip.position }}
+					{% endif %}
+				</div>
+				<b class="progression zindex-10">{{ clip.progression|raw }}</b>
+				<h6 class="clip-name zindex-10">{{ clip.title }}</h6>
+				<b class="artiste-name zindex-10">{{ clip.artiste }}</b>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+</div>
+{% endif %}

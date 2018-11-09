@@ -1,0 +1,80 @@
+span.icon-search{
+	background-image: url(../svg/search.svg);
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+	position: absolute;
+	top: 8px;
+	right: 8px;
+}
+span.prog-bar,
+span.prog-up,
+span.prog-down{
+	font-size: 14px;
+	font-weight: bold;
+	font-family: monospace;
+}
+span.prog-bar:before{
+	background-image: url(../svg/progression_bar.svg);
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+}
+span.prog-up::before{
+	background-image: url(../svg/progression_up.svg);
+	content: "";
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-size: cover;
+}
+span.prog-down::before{
+	background-image: url(../svg/progression_down.svg);
+	content: "";
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	background-size: cover;
+}
+.search-panel{
+	display: inline-block;
+	position:relative;
+}
+.input-search-clips{
+	width: 250px !important;
+}
+.search-panel .content-search{
+	background-color: #e2e2e2;
+	border: 2px solid lightgrey;
+	box-shadow: 0px 1px 9px #cfcfcf;
+	position: absolute;
+	z-index: 100;
+	height: 300px;
+	overflow-y: auto;
+	display:none;
+}
+.auto-height{
+	height:auto !important;
+	padding:10px;
+}
+.track-input{
+	float: left;
+	margin-right: 8px
+}
+table.clips .image_embed img{
+	width: 140px;
+}
+table.clips .video-title .artiste{
+	color: #ee1313;
+	font-weight: bold;
+}
+table#top30-grid > tbody > tr{
+	cursor: pointer;
+}
+a.remove-row {
+	color: #f30808;
+	font-weight: bold;
+}

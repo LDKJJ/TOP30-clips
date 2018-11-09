@@ -1,0 +1,23 @@
+<table class="clips" style="width: 300px">
+	{% for clip in clips %}
+	<tr style="cursor:pointer" data-id="{{ clip.nid }}">
+		{% set link_youtube = clip.embed_code|split('/') %}
+		<td>
+			<div class="image_embed">
+				{% if clip.embed_image is not null %}
+				<img src="clip.embed_image" />
+				{% else %}
+				<img src="//img.youtube.com/vi/{{ link_youtube[3] }}/mqdefault.jpg">
+				{% endif %}
+				<i class="fa fa-play" aria-hidden="true"></i>
+			</div>
+		</td>
+		<td>
+			<div class="video-title">
+				<p class="b-sm-title">{{ clip.title }}</p>
+				<p class="g-sm-title artiste">{{ clip.artiste }}</p>
+			</div>
+		</td>
+	</tr>
+	{% endfor %}
+</table>

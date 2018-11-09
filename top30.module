@@ -1,0 +1,89 @@
+<?php
+
+/**
+ * @file
+ * Contains top30.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function top30_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the top30 module.
+    case 'help.page.top30':
+    $output = '';
+    $output .= '<h3>' . t('About') . '</h3>';
+    $output .= '<p>' . t('Module Top30 music hitradio') . '</p>';
+    return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function top30_theme() {
+  return [
+    'add_top30' => [
+      'render element' => 'form',
+      'variables' => [
+        'clips' => NULL,
+        'preview_classement' => NULL
+      ]
+    ],
+    'edit_top30' => [
+      'render element' => 'form',
+      'variables' => [
+        'clips' => NULL,
+        'top30' => NULL,
+        'preview_classement' => NULL
+      ]
+    ],
+    'lists_top30' => [
+      'variables' => [
+        'listtop30' => NULL
+      ]
+    ],
+    'search_clips_top30' => [
+      'variables' => [
+        'clips' => NULL,
+        'top30' => NULL
+      ]
+    ],
+    'list_clips_top30' => [
+      'variables' => [
+        'clips' => NULL,
+        'token' => NULL,
+        'date_classement' => NULL,
+        'isAjax' => NULL
+      ]
+    ],
+    'fetch_clips_top30' => [
+      'variables' => [
+        'clips' => NULL,
+        'token' => NULL,
+        'date_classement' => NULL,
+        'isAjax' => NULL
+      ]
+    ],
+    'list_clips_top30_floating' => [
+      'variables' => [
+        'clips' => NULL,
+        'token' => NULL,
+        'date_classement' => NULL,
+        'isAjax' => NULL
+      ]
+    ],
+    'list_clips_top30front' => [
+      'variables' => [
+        'clips' => NULL,
+        'token' => NULL,
+        'date_classement' => NULL
+      ]
+    ]
+  ];
+}
